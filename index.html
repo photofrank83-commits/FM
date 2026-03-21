@@ -228,6 +228,7 @@ h1 .accent{color:#4da3ff;}
 
 /* SECTIONS */
 .s{padding:120px 56px;max-width:1320px;margin:0 auto;}
+#about,#services,#work,#cta{scroll-margin-top:100px;}
 
 /* LABEL TAG */
 .label-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid rgba(255,255,255,.1);border-radius:100px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,237,232,.4);margin-bottom:32px;}
@@ -528,9 +529,9 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
   </div>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
     </ul>
     <a href="#cta" class="nav-btn">Get in Touch</a>
   </div>
@@ -553,12 +554,16 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
     </div>
     <div class="hero-right">
       <p>Aerial photography, bespoke websites, drone cinematography and immersive 3D imagery — built for businesses that refuse to blend in.</p>
-      <div class="hero-form">
-        <input type="tel" placeholder="Your phone number">
-        <a href="#cta" class="btn btn-blue">
+      <form id="heroForm" class="hero-form" action="https://formspree.io/f/xnjgybry" method="POST">
+        <input type="tel" name="phone" placeholder="Your phone number" required>
+        <input type="hidden" name="source" value="Hero Form">
+        <button type="submit" class="btn btn-blue">
           Request a Call Back
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
-        </a>
+        </button>
+      </form>
+      <div id="heroSuccess" style="display:none;padding:14px 18px;background:rgba(0,87,168,.15);border:1px solid rgba(0,87,168,.4);border-radius:8px;font-size:14px;color:rgba(240,237,232,.8);margin-top:10px;">
+        ✓ Thanks! We'll call you back shortly.
       </div>
     </div>
   </div>
@@ -591,7 +596,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
 </div>
 
 <!-- ABOUT -->
-<section class="s">
+<section class="s" id="about">
   <div class="about-grid">
     <div class="about-label reveal">
       <div class="label-tag"><div class="label-tag-dot"></div> About Us</div>
@@ -610,7 +615,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
 </section>
 
 <!-- SERVICES -->
-<section class="s" style="padding-top:0;">
+<section class="s" id="services" style="padding-top:0;">
   <div class="services-head reveal">
     <h2>What we <span class="dim">do</span></h2>
     <p>Three core disciplines, one focused studio — built to make your brand impossible to ignore.</p>
@@ -629,8 +634,8 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
     <div class="service-item reveal">
       <span class="si-num">02</span>
       <div class="si-body">
-        <h3>Virtual Tours &amp; Aerial Film</h3>
-        <p>Immersive 360° tours and cinematic drone footage powered by advanced CAA Registered drone technology across the UK.</p>
+        <h3>Drone Photography &amp; Cinematography</h3>
+        <p>CAA Registered aerial photography and videography for estate agents, chartered surveyors, property developers, construction firms, tourism operators and more. Stunning imagery that sets your listings and marketing apart.</p>
       </div>
       <div class="si-arrow">
         <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
@@ -675,7 +680,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
 </div>
 
 <!-- GALLERY — DRONE PHOTOGRAPHY -->
-<section class="s">
+<section class="s" id="work">
   <div class="gallery-head reveal">
     <h2>Aerial <span class="dim">Photography</span></h2>
     <a href="#">
@@ -814,7 +819,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
     <h3>Start a Conversation</h3>
     <p class="modal-sub">Tell us about your project and we'll be in touch shortly.</p>
 
-    <form id="contactForm" action="FORMSPREE_URL_HERE" method="POST">
+    <form id="contactForm" action="https://formspree.io/f/xnjgybry" method="POST">
       <div class="form-row">
         <div class="form-group">
           <label>First Name</label>
@@ -975,7 +980,36 @@ function handleOverlayClick(e){
 }
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
 
-// Form submit (Formspree)
+// Hero form submit
+const heroForm = document.getElementById('heroForm');
+if(heroForm){
+  heroForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = heroForm.querySelector('button[type=submit]');
+    const original = btn.innerHTML;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(heroForm.action, {
+        method:'POST',
+        body: new FormData(heroForm),
+        headers:{'Accept':'application/json'}
+      });
+      if(res.ok){
+        heroForm.style.display='none';
+        document.getElementById('heroSuccess').style.display='block';
+      } else {
+        btn.innerHTML = original;
+        btn.disabled = false;
+      }
+    } catch {
+      btn.innerHTML = original;
+      btn.disabled = false;
+    }
+  });
+}
+
+// Contact modal form submit
 const form = document.getElementById('contactForm');
 if(form){
   form.addEventListener('submit', async function(e){
