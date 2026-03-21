@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Franks Media</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#0a0a0a;color:#f0ede8;font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+
+/* CURSOR */
+#cur,#cur-trail{position:fixed;pointer-events:none;border-radius:50%;z-index:9999;transform:translate(-50%,-50%);}
+#cur{width:8px;height:8px;background:#fff;transition:transform .15s,background .2s;}
+#cur-trail{width:32px;height:32px;border:1px solid rgba(255,255,255,.25);transition:width .3s,height .3s,border-color .3s;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 56px;
+  transition:padding .4s,background .4s,backdrop-filter .4s;
+}
+nav.scrolled{
+  padding:16px 56px;
+  background:rgba(10,10,10,.92);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.logo{display:flex;align-items:center;}
+.logo img{height:90px;width:auto;max-width:200px;object-fit:contain;display:block;}
+.nav-right{display:flex;align-items:center;gap:44px;}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-size:13px;letter-spacing:.06em;color:rgba(240,237,232,.5);font-weight:400;transition:color .25s;}
+.nav-links a:hover{color:#f0ede8;}
+.nav-btn{
+  font-size:13px;letter-spacing:.06em;font-weight:500;
+  padding:10px 22px;border:1px solid rgba(240,237,232,.2);border-radius:100px;
+  color:#f0ede8;transition:background .25s,border-color .25s;
+}
+.nav-btn:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4);}
+
+/* HERO */
+.hero{height:100svh;min-height:700px;position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('https://cdn.prod.website-files.com/67f845f932f268860becd300/67f845f932f268860becd389_Franks%20(5).jpg') center/cover no-repeat;
+  animation:zoomIn 14s ease-out forwards;
+}
+@keyframes zoomIn{from{transform:scale(1.06);}to{transform:scale(1.0);}}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(10,10,10,.12) 0%,rgba(10,10,10,.05) 35%,rgba(10,10,10,.7) 75%,rgba(10,10,10,.95) 100%);
+}
+.hero-tag{position:absolute;top:130px;right:56px;display:flex;align-items:center;gap:8px;z-index:2;animation:fadeIn .8s 1.2s both;}
+.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:#0057A8;}
+.hero-tag span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,237,232,.6);font-weight:400;}
+.hero-content{position:relative;z-index:2;padding:0 56px 72px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:24px;animation:fadeUp .9s .3s both;}
+.hero-eyebrow-line{width:32px;height:1px;background:rgba(240,237,232,.35);}
+.hero-eyebrow span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,237,232,.5);font-weight:400;}
+h1{font-family:'Syne',sans-serif;font-size:clamp(52px,7vw,90px);font-weight:700;line-height:1.0;letter-spacing:-.025em;color:#f0ede8;animation:fadeUp .9s .45s both;max-width:700px;}
+h1 .accent{color:#4da3ff;}
+.hero-right{flex-shrink:0;max-width:320px;animation:fadeUp .9s .6s both;}
+.hero-right p{font-size:15px;line-height:1.75;color:rgba(240,237,232,.55);margin-bottom:28px;}
+.hero-form{display:flex;flex-direction:column;gap:10px;}
+.hero-form input{
+  padding:13px 18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;
+  color:#f0ede8;font-family:'Outfit',sans-serif;font-size:14px;font-weight:300;outline:none;
+  transition:border-color .25s,background .25s;
+}
+.hero-form input::placeholder{color:rgba(240,237,232,.3);}
+.hero-form input:focus{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.1);}
+.btn{
+  padding:13px 20px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;letter-spacing:.05em;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:all .25s;cursor:pointer;border:none;
+}
+.btn-blue{background:#0057A8;color:#fff;}
+.btn-blue:hover{background:#0066cc;transform:translateY(-1px);}
+.btn-dark{background:#0a0a0a;color:#f0ede8;}
+.btn-dark:hover{background:#1a1a1a;transform:translateY(-1px);}
+.btn-white{background:#fff;color:#0a0a0a;}
+.btn-white:hover{background:#e8e8e8;transform:translateY(-1px);}
+.btn svg{width:13px;height:13px;transition:transform .25s;}
+.btn:hover svg{transform:translateX(3px);}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;animation:fadeIn .8s 1.4s both;}
+.hero-scroll span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,237,232,.3);}
+.scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,rgba(0,87,168,.8),transparent);animation:scrollBob 2s ease-in-out infinite;}
+@keyframes scrollBob{0%,100%{opacity:.3;}50%{opacity:.9;}}
+
+/* MARQUEE */
+.marquee-wrap{border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:18px 0;overflow:hidden;}
+.marquee{display:flex;width:max-content;animation:marquee 24s linear infinite;}
+.marquee-item{display:flex;align-items:center;gap:28px;padding-right:56px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,237,232,.28);font-weight:400;white-space:nowrap;}
+.marquee-sep{width:3px;height:3px;border-radius:50%;background:rgba(240,237,232,.18);}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* SECTIONS */
+.s{padding:120px 56px;max-width:1320px;margin:0 auto;}
+
+/* LABEL TAG */
+.label-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid rgba(255,255,255,.1);border-radius:100px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,237,232,.4);margin-bottom:32px;}
+.label-tag-dot{width:5px;height:5px;border-radius:50%;background:#0057A8;}
+.dim{color:rgba(240,237,232,.25);}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:120px;align-items:start;}
+.about-label{position:sticky;top:120px;}
+.about-label h2{font-family:'Syne',sans-serif;font-size:clamp(38px,4vw,54px);font-weight:700;letter-spacing:-.02em;line-height:1.05;}
+.about-body p{font-size:16px;line-height:1.85;color:rgba(240,237,232,.5);margin-bottom:22px;}
+.about-body p strong{color:rgba(240,237,232,.85);font-weight:500;}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;margin-top:52px;}
+.stat{padding:32px 28px;border-right:1px solid rgba(255,255,255,.08);}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:'Syne',sans-serif;font-size:38px;font-weight:700;letter-spacing:-.02em;color:#f0ede8;display:block;margin-bottom:6px;}
+.stat-l{font-size:12px;letter-spacing:.08em;color:rgba(240,237,232,.3);text-transform:uppercase;}
+
+/* SERVICES */
+.services-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px;}
+.services-head h2{font-family:'Syne',sans-serif;font-size:clamp(38px,4vw,54px);font-weight:700;letter-spacing:-.02em;line-height:1.05;}
+.services-head p{font-size:15px;line-height:1.75;color:rgba(240,237,232,.4);max-width:340px;justify-self:end;align-self:end;}
+.service-list{display:flex;flex-direction:column;}
+.service-item{
+  display:grid;grid-template-columns:60px 1fr auto;align-items:center;gap:32px;
+  padding:36px 0;border-bottom:1px solid rgba(255,255,255,.07);
+  transition:padding-left .35s;position:relative;overflow:hidden;
+}
+.service-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:#0057A8;transition:width .4s ease;z-index:0;}
+.service-item:hover{padding-left:20px;}
+.service-item:hover::before{width:3px;}
+.service-item > *{position:relative;z-index:1;}
+.si-num{font-family:'Syne',sans-serif;font-size:13px;letter-spacing:.08em;color:rgba(240,237,232,.2);font-weight:600;}
+.si-body h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px;color:#f0ede8;transition:color .25s;}
+.service-item:hover .si-body h3{color:#4da3ff;}
+.si-body p{font-size:14px;line-height:1.7;color:rgba(240,237,232,.38);}
+.si-arrow{width:40px;height:40px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(240,237,232,.3);transition:all .3s;}
+.service-item:hover .si-arrow{border-color:#0057A8;color:#4da3ff;transform:rotate(-45deg);}
+.si-arrow svg{width:15px;height:15px;}
+
+/* FEATURE */
+.feature-outer{background:#111;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;}
+.feature-img-col{position:relative;overflow:hidden;min-height:600px;}
+.feature-img-col img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;display:block;}
+.feature-img-col:hover img{transform:scale(1.03);}
+.feature-badge{
+  position:absolute;bottom:32px;left:32px;
+  background:rgba(10,10,10,.85);border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(12px);border-radius:10px;padding:16px 20px;
+  display:flex;align-items:center;gap:12px;
+}
+.badge-dot{width:8px;height:8px;border-radius:50%;background:#0057A8;flex-shrink:0;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+.badge-txt{font-size:12px;letter-spacing:.06em;color:rgba(240,237,232,.7);}
+.badge-txt strong{display:block;color:#f0ede8;font-weight:500;margin-bottom:2px;}
+.feature-text-col{padding:72px 64px;display:flex;flex-direction:column;justify-content:center;}
+.feature-text-col .label-tag{margin-bottom:28px;}
+.feature-text-col h2{font-family:'Syne',sans-serif;font-size:clamp(32px,3vw,44px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:24px;}
+.feature-text-col p{font-size:15px;line-height:1.8;color:rgba(240,237,232,.45);margin-bottom:16px;}
+.check-list{list-style:none;margin:28px 0 40px;display:flex;flex-direction:column;gap:14px;}
+.check-list li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(240,237,232,.55);line-height:1.5;}
+.check-list li::before{content:'';display:block;width:16px;height:16px;flex-shrink:0;border-radius:50%;background:rgba(0,87,168,.15);border:1px solid rgba(0,87,168,.5);margin-top:1px;}
+
+/* GALLERY */
+.gallery-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;}
+.gallery-head h2{font-family:'Syne',sans-serif;font-size:clamp(38px,4vw,54px);font-weight:700;letter-spacing:-.02em;line-height:1.05;}
+.gallery-head a{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(240,237,232,.35);display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:2px;transition:color .25s,border-color .25s;}
+.gallery-head a:hover{color:#f0ede8;border-color:rgba(255,255,255,.4);}
+.gallery-head a svg{width:13px;height:13px;}
+.gallery-grid{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:340px 240px;gap:12px;}
+.g-item{overflow:hidden;border-radius:4px;position:relative;}
+.g-item:first-child{grid-row:span 2;}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;}
+.g-item:hover img{transform:scale(1.05);}
+.g-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.6),transparent 50%);opacity:0;transition:opacity .35s;display:flex;align-items:flex-end;padding:20px 22px;}
+.g-item:hover .g-overlay{opacity:1;}
+.g-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,237,232,.7);}
+
+/* CTA */
+.cta-wrap{background:#0057A8;padding:100px 56px;position:relative;overflow:hidden;}
+.cta-bg-txt{position:absolute;font-family:'Syne',sans-serif;font-size:240px;font-weight:800;color:rgba(255,255,255,.06);line-height:1;letter-spacing:-.04em;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;user-select:none;}
+.cta-inner{position:relative;z-index:1;max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:60px;}
+.cta-inner h2{font-family:'Syne',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-.03em;line-height:1.0;color:#fff;max-width:600px;}
+.cta-right{flex-shrink:0;display:flex;flex-direction:column;gap:16px;align-items:flex-start;}
+.cta-right p{font-size:15px;color:rgba(255,255,255,.65);line-height:1.6;max-width:260px;}
+.btn-outline-white{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:2px;transition:color .25s,border-color .25s;font-family:'Outfit',sans-serif;}
+.btn-outline-white:hover{color:#fff;border-color:rgba(255,255,255,.8);}
+.btn-outline-white svg{width:11px;height:11px;}
+
+/* FOOTER */
+footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
+.footer-top{max-width:1320px;margin:0 auto;padding:72px 56px 56px;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:60px;border-bottom:1px solid rgba(255,255,255,.06);}
+.footer-brand{display:flex;flex-direction:column;gap:20px;}
+.footer-logo{display:inline-flex;align-items:center;width:fit-content;}
+.footer-logo img{height:70px;width:auto;}
+.footer-brand p{font-size:13px;line-height:1.75;color:rgba(240,237,232,.28);max-width:220px;}
+.footer-col h4{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,237,232,.22);margin-bottom:20px;font-weight:500;}
+.footer-col a,.footer-col p{display:block;font-size:13px;color:rgba(240,237,232,.35);margin-bottom:13px;line-height:1;transition:color .2s;}
+.footer-col a:hover{color:rgba(240,237,232,.75);}
+.footer-col .email{color:#4da3ff;font-size:14px;font-weight:400;border-bottom:1px solid rgba(77,163,255,.25);padding-bottom:1px;}
+.footer-col .email:hover{color:#7ec0ff;border-color:rgba(77,163,255,.6);}
+.footer-bottom{max-width:1320px;margin:0 auto;padding:24px 56px;display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p,.footer-bottom a{font-size:12px;color:rgba(240,237,232,.18);}
+.footer-bottom a:hover{color:rgba(240,237,232,.45);}
+.footer-bottom-links{display:flex;gap:24px;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+/* Reveal — starts visible, JS adds animation class */
+.reveal{opacity:1;transform:none;}
+.reveal.animate{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease;}
+.reveal.animate.in{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  nav,nav.scrolled{padding-left:30px;padding-right:30px;}
+  .s{padding:80px 30px;}
+  .hero-content{padding:0 30px 60px;}
+  .hero-tag{top:22px;right:30px;}
+  .about-grid{grid-template-columns:1fr;gap:48px;}
+  .about-label{position:static;}
+  .services-head{grid-template-columns:1fr;}
+  .services-head p{justify-self:start;}
+  .feature-grid{grid-template-columns:1fr;}
+  .feature-img-col{min-height:380px;}
+  .feature-text-col{padding:48px 30px;}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:260px 200px;}
+  .cta-wrap{padding:72px 30px;}
+  .cta-inner{flex-direction:column;align-items:flex-start;gap:36px;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px;padding:56px 30px 40px;}
+  .footer-bottom{padding:20px 30px;}
+}
+@media(max-width:640px){
+  h1{font-size:42px;}
+  .nav-links{display:none;}
+  .hero-content{flex-direction:column;align-items:flex-start;gap:32px;}
+  .hero-right{max-width:100%;}
+  .stats-row{grid-template-columns:1fr;}
+  .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);}
+  .stat:last-child{border-bottom:none;}
+  .gallery-grid{grid-template-columns:1fr;grid-template-rows:auto;}
+  .g-item,.g-item:first-child{height:260px;grid-row:span 1;}
+  .footer-top{grid-template-columns:1fr;}
+  .service-item{grid-template-columns:44px 1fr auto;gap:16px;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-trail"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">
+    <img src="https://i.postimg.cc/bYQZyD3g/Franks-Media-1-removebg-preview.png" alt="Franks Media">
+  </div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Work</a></li>
+    </ul>
+    <a href="#" class="nav-btn">Get in Touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-tag">
+    <div class="hero-tag-dot"></div>
+    <span>Huddersfield, UK &amp; Ireland</span>
+  </div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>Aerial &amp; Digital Creative Studio</span>
+      </div>
+      <h1>Showcase<br>Your Business<br><span class="accent">Differently.</span></h1>
+    </div>
+    <div class="hero-right">
+      <p>Aerial photography, bespoke websites, drone cinematography and immersive 3D imagery — built for businesses that refuse to blend in.</p>
+      <div class="hero-form">
+        <input type="tel" placeholder="Your phone number">
+        <a href="#" class="btn btn-blue">
+          Request a Call Back
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <div class="marquee-item">Aerial Photography<div class="marquee-sep"></div></div>
+    <div class="marquee-item">Drone Cinematography<div class="marquee-sep"></div></div>
+    <div class="marquee-item">3D Aerial Imagery<div class="marquee-sep"></div></div>
+    <div class="marquee-item">Virtual Tours<div class="marquee-sep"></div></div>
+    <div class="marquee-item">Website Design<div class="marquee-sep"></div></div>
+    <div class="marquee-item">E-Commerce<div class="marquee-sep"></div></div>
+    <div class="marquee-item">3D Perspectives<div class="marquee-sep"></div></div>
+    <div class="marquee-item">CAA Registered<div class="marquee-sep"></div></div>
+    <div class="marquee-item">Aerial Photography<div class="marquee-sep"></div></div>
+    <div class="marquee-item">Drone Cinematography<div class="marquee-sep"></div></div>
+    <div class="marquee-item">3D Aerial Imagery<div class="marquee-sep"></div></div>
+    <div class="marquee-item">Virtual Tours<div class="marquee-sep"></div></div>
+    <div class="marquee-item">Website Design<div class="marquee-sep"></div></div>
+    <div class="marquee-item">E-Commerce<div class="marquee-sep"></div></div>
+    <div class="marquee-item">3D Perspectives<div class="marquee-sep"></div></div>
+    <div class="marquee-item">CAA Registered<div class="marquee-sep"></div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="s">
+  <div class="about-grid">
+    <div class="about-label reveal">
+      <div class="label-tag"><div class="label-tag-dot"></div> About Us</div>
+      <h2>We make<br>brands <span class="dim">stand</span><br><span class="dim">out.</span></h2>
+    </div>
+    <div class="about-body reveal">
+      <p>Based in <strong>Huddersfield</strong>, Franks Media is a specialist creative studio combining cutting-edge aerial imaging technology with refined digital design. We give businesses a presence that commands attention — from the sky to the screen.</p>
+      <p>Whether you need a high-performance website, cinematic drone footage, or a fully interactive 3D model of your property, we bring the expertise and artistry to make it real — on time and on budget.</p>
+      <div class="stats-row">
+        <div class="stat"><span class="stat-n">200+</span><span class="stat-l">Projects</span></div>
+        <div class="stat"><span class="stat-n">UK &amp; IE</span><span class="stat-l">Coverage</span></div>
+        <div class="stat"><span class="stat-n">5★</span><span class="stat-l">Rated</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="s" style="padding-top:0;">
+  <div class="services-head reveal">
+    <h2>What we <span class="dim">do</span></h2>
+    <p>Three core disciplines, one focused studio — built to make your brand impossible to ignore.</p>
+  </div>
+  <div class="service-list">
+    <div class="service-item reveal">
+      <span class="si-num">01</span>
+      <div class="si-body">
+        <h3>Website Design</h3>
+        <p>Bespoke, conversion-focused websites for local and national businesses. Fast, mobile-first, and built to grow with you.</p>
+      </div>
+      <div class="si-arrow">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+      </div>
+    </div>
+    <div class="service-item reveal">
+      <span class="si-num">02</span>
+      <div class="si-body">
+        <h3>Virtual Tours &amp; Aerial Film</h3>
+        <p>Immersive 360° tours and cinematic drone footage powered by advanced CAA Registered drone technology across the UK and Ireland.</p>
+      </div>
+      <div class="si-arrow">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+      </div>
+    </div>
+    <div class="service-item reveal">
+      <span class="si-num">03</span>
+      <div class="si-body">
+        <h3>3D Perspectives</h3>
+        <p>Precise digital replicas of spaces and properties — interactive models that showcase dimensions and layout in a way photography cannot.</p>
+      </div>
+      <div class="si-arrow">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE -->
+<div class="feature-outer">
+  <div class="feature-grid" style="max-width:1320px;margin:0 auto;">
+    <div class="feature-img-col reveal">
+      <img src="https://image2url.com/r2/default/images/1774129124360-064b22f5-1317-489f-b449-44c25dd6f61f.png" alt="Website design example">
+      <div class="feature-badge">
+        <div class="badge-dot"></div>
+        <div class="badge-txt">
+          <strong>CAA Registered</strong>
+          Certified Drone Operator
+        </div>
+      </div>
+    </div>
+    <div class="feature-text-col reveal">
+      <div class="label-tag"><div class="label-tag-dot"></div> Web Design</div>
+      <h2>Your new website,<br>made easy.</h2>
+      <p>We deliver stylish, modern websites for businesses at honest rates. Our process is simple — we listen, design, and deliver something you'll be proud to share.</p>
+      <ul class="check-list">
+        <li>Bespoke design — never templates</li>
+        <li>Mobile-first &amp; fast-loading</li>
+        <li>E-commerce ready</li>
+        <li>Ongoing support included</li>
+      </ul>
+      <a href="#" class="btn btn-blue">
+        Start a Project
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section class="s">
+  <div class="gallery-head reveal">
+    <h2>Our <span class="dim">Gallery</span></h2>
+    <a href="#">
+      View All Work
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+    </a>
+  </div>
+  <div class="gallery-grid">
+    <div class="g-item reveal">
+      <img src="https://cdn.prod.website-files.com/67f845f932f268860becd300/67f845f932f268860becd389_Franks%20(5).jpg" alt="Aerial photography">
+      <div class="g-overlay"><span class="g-label">Aerial Photography</span></div>
+    </div>
+    <div class="g-item reveal">
+      <img src="https://image2url.com/r2/default/images/1774129124360-064b22f5-1317-489f-b449-44c25dd6f61f.png" alt="Website design">
+      <div class="g-overlay"><span class="g-label">Website Design</span></div>
+    </div>
+    <div class="g-item reveal">
+      <img src="https://cdn.prod.website-files.com/67f845f932f268860becd300/67f845f932f268860becd389_Franks%20(5).jpg" alt="3D Imagery">
+      <div class="g-overlay"><span class="g-label">3D Perspectives</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <div class="cta-bg-txt">FM</div>
+  <div class="cta-inner">
+    <h2>Let's build something great together.</h2>
+    <div class="cta-right">
+      <p>Get in touch today — no obligation, just a conversation about your project.</p>
+      <a href="mailto:info@franks-media.co.uk" class="btn btn-white">
+        Contact the Studio
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+      </a>
+      <a href="mailto:info@franks-media.co.uk" class="btn-outline-white">
+        info@franks-media.co.uk
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="https://i.postimg.cc/bYQZyD3g/Franks-Media-1-removebg-preview.png" alt="Franks Media">
+      </div>
+      <p>Aerial photography, 3D imaging and bespoke websites for businesses across the UK &amp; Ireland.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="#">About Us</a>
+      <a href="#">Services</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Terms &amp; Conditions</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:info@franks-media.co.uk" class="email">info@franks-media.co.uk</a>
+      <p>Huddersfield,<br>West Yorkshire</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Franks Media. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Cursor
+const cur = document.getElementById('cur');
+const trail = document.getElementById('cur-trail');
+let tx=0,ty=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => {
+  tx = e.clientX; ty = e.clientY;
+  cur.style.left = tx+'px'; cur.style.top = ty+'px';
+});
+(function loop(){
+  rx += (tx-rx)*.1; ry += (ty-ry)*.1;
+  trail.style.left = rx+'px'; trail.style.top = ry+'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a,button,input').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cur.style.transform = 'translate(-50%,-50%) scale(0)';
+    trail.style.width = '48px'; trail.style.height = '48px';
+    trail.style.borderColor = '#0057A8';
+  });
+  el.addEventListener('mouseleave', () => {
+    cur.style.transform = 'translate(-50%,-50%) scale(1)';
+    trail.style.width = '32px'; trail.style.height = '32px';
+    trail.style.borderColor = 'rgba(255,255,255,.25)';
+  });
+});
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Scroll reveal — elements start fully visible, JS opts them into animation
+// This ensures content is never hidden if observer/JS fails
+const revealEls = document.querySelectorAll('.reveal');
+
+if ('IntersectionObserver' in window) {
+  // Add animate class (makes them invisible initially for animation)
+  revealEls.forEach((el, i) => {
+    el.classList.add('animate');
+    el.style.transitionDelay = (i * 0.05) + 's';
+  });
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -30px 0px' });
+
+  revealEls.forEach(el => io.observe(el));
+}
+</script>
+</body>
+</html>
