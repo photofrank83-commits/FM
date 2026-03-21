@@ -299,6 +299,49 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
   .portfolio-visit{display:flex;}
   .portfolio-client:active .portfolio-visit{color:#4da3ff;}
 }
+
+/* CONTACT MODAL */
+.modal-overlay{
+  position:fixed;inset:0;z-index:999;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;opacity:0;pointer-events:none;transition:opacity .35s ease;
+}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal{
+  background:#141414;border:1px solid rgba(255,255,255,.08);border-radius:16px;
+  padding:52px 48px;width:100%;max-width:540px;position:relative;
+  transform:translateY(24px);transition:transform .35s ease;
+}
+.modal-overlay.open .modal{transform:translateY(0);}
+.modal-close{
+  position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  color:rgba(240,237,232,.5);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;line-height:1;transition:background .2s,color .2s;font-family:sans-serif;
+}
+.modal-close:hover{background:rgba(255,255,255,.12);color:#f0ede8;}
+.modal h3{font-family:'Syne',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;color:#f0ede8;}
+.modal-sub{font-size:14px;color:rgba(240,237,232,.4);margin-bottom:36px;line-height:1.5;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:0;}
+.form-group{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.form-group label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,237,232,.35);font-weight:400;}
+.form-group input,.form-group textarea,.form-group select{
+  padding:13px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:8px;color:#f0ede8;font-family:'Outfit',sans-serif;font-size:14px;font-weight:300;
+  outline:none;transition:border-color .25s,background .25s;width:100%;
+}
+.form-group textarea{resize:none;height:110px;}
+.form-group select option{background:#1a1a1a;color:#f0ede8;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:rgba(0,87,168,.8);background:rgba(0,87,168,.06);}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(240,237,232,.2);}
+.modal-submit{width:100%;margin-top:8px;justify-content:center;}
+.form-success{display:none;text-align:center;padding:32px 0;}
+.form-success strong{color:#f0ede8;display:block;font-family:'Syne',sans-serif;font-size:22px;margin-bottom:10px;letter-spacing:-.01em;}
+.form-success p{font-size:15px;color:rgba(240,237,232,.5);line-height:1.6;}
+@media(max-width:540px){.modal{padding:36px 24px;}.form-row{grid-template-columns:1fr;}}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 .reveal{opacity:1;transform:none;}
@@ -357,7 +400,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
       <li><a href="#">Services</a></li>
       <li><a href="#">Work</a></li>
     </ul>
-    <a href="#" class="nav-btn">Get in Touch</a>
+    <a href="#cta" class="nav-btn">Get in Touch</a>
   </div>
 </nav>
 
@@ -380,7 +423,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
       <p>Aerial photography, bespoke websites, drone cinematography and immersive 3D imagery — built for businesses that refuse to blend in.</p>
       <div class="hero-form">
         <input type="tel" placeholder="Your phone number">
-        <a href="#" class="btn btn-blue">
+        <a href="#cta" class="btn btn-blue">
           Request a Call Back
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
         </a>
@@ -490,7 +533,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
         <li>E-commerce ready</li>
         <li>Ongoing support included</li>
       </ul>
-      <a href="#" class="btn btn-blue">
+      <a href="#cta" class="btn btn-blue">
         Start a Project
         <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
       </a>
@@ -613,20 +656,75 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
 </div>
 
 <!-- CTA -->
-<div class="cta-wrap">
+<div class="cta-wrap" id="cta">
   <div class="cta-bg-txt">FM</div>
   <div class="cta-inner">
     <h2>Let's build something great together.</h2>
     <div class="cta-right">
       <p>Get in touch today — no obligation, just a conversation about your project.</p>
-      <a href="/cdn-cgi/l/email-protection#771e19111837110516191c045a1a12131e1659141859021c" class="btn btn-white">
+      <button onclick="openModal()" class="btn btn-white">
         Contact the Studio
         <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
-      </a>
-      <a href="/cdn-cgi/l/email-protection#d2bbbcb4bd92b4a0b3bcb9a1ffbfb7b6bbb3fcb1bdfca7b9" class="btn-outline-white">
-        <span class="__cf_email__" data-cfemail="41282f272e012733202f2a326c2c242528206f222e6f342a">[email&#160;protected]</span>
+      </button>
+      <a href="mailto:info@franks-media.co.uk" class="btn-outline-white">
+        info@franks-media.co.uk
         <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
       </a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    <h3>Start a Conversation</h3>
+    <p class="modal-sub">Tell us about your project and we'll be in touch shortly.</p>
+
+    <form id="contactForm" action="FORMSPREE_URL_HERE" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" name="first_name" placeholder="James" required>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" name="last_name" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="james@company.com" required>
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" name="phone" placeholder="+44 7700 000000">
+      </div>
+      <div class="form-group">
+        <label>What are you interested in?</label>
+        <select name="service">
+          <option value="" disabled selected>Select a service</option>
+          <option>Website Design</option>
+          <option>Aerial Photography</option>
+          <option>Drone Cinematography</option>
+          <option>Virtual Tours</option>
+          <option>3D Perspectives</option>
+          <option>Multiple Services</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell us more</label>
+        <textarea name="message" placeholder="Give us a brief overview of your project..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-blue modal-submit">
+        Send Enquiry
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+      </button>
+    </form>
+
+    <div class="form-success" id="formSuccess">
+      <strong>Message Sent!</strong>
+      <p>Thanks for getting in touch. We'll get back to you within one business day.</p>
     </div>
   </div>
 </div>
@@ -642,10 +740,10 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
     </div>
     <div class="footer-col">
       <h4>Navigate</h4>
-      <a href="#">About Us</a>
-      <a href="#">Services</a>
-      <a href="#">Portfolio</a>
-      <a href="#">Contact</a>
+      <a href="#cta">About Us</a>
+      <a href="#cta">Services</a>
+      <a href="#cta">Portfolio</a>
+      <a href="#cta">Contact</a>
     </div>
     <div class="footer-col">
       <h4>Legal</h4>
@@ -655,7 +753,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
-      <a href="/cdn-cgi/l/email-protection#6a03040c052a0c180b04011947070f0e030b440905441f01" class="email"><span class="__cf_email__" data-cfemail="0e676068614e687c6f60657d23636b6a676f206d61207b65">[email&#160;protected]</span></a>
+      <a href="mailto:info@franks-media.co.uk" class="email">info@franks-media.co.uk</a>
       <p>Huddersfield,<br>West Yorkshire</p>
     </div>
   </div>
@@ -669,7 +767,49 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Gallery slider
+// Modal
+function openModal(){
+  document.getElementById('contactModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('contactModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function handleOverlayClick(e){
+  if(e.target===document.getElementById('contactModal')) closeModal();
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+// Form submit (Formspree)
+const form = document.getElementById('contactForm');
+if(form){
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = form.querySelector('button[type=submit]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method:'POST',
+        body: new FormData(form),
+        headers:{'Accept':'application/json'}
+      });
+      if(res.ok){
+        form.style.display='none';
+        document.getElementById('formSuccess').style.display='block';
+      } else {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
+  });
+}
+
+// Nav scroll backdrop
 let currentSlide = 0;
 const totalSlides = 3;
 function goToSlide(n) {
