@@ -13,11 +13,6 @@ body{background:#0a0a0a;color:#f0ede8;font-family:'Outfit',sans-serif;font-weigh
 a{text-decoration:none;color:inherit;}
 img{display:block;max-width:100%;}
 
-/* CURSOR */
-#cur,#cur-trail{position:fixed;pointer-events:none;border-radius:50%;z-index:9999;transform:translate(-50%,-50%);}
-#cur{width:8px;height:8px;background:#fff;transition:transform .15s,background .2s;}
-#cur-trail{width:32px;height:32px;border:1px solid rgba(255,255,255,.25);transition:width .3s,height .3s,border-color .3s;}
-
 /* NAV */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -144,8 +139,8 @@ h1 .accent{color:#4da3ff;}
 /* FEATURE */
 .feature-outer{background:#111;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;}
-.feature-img-col{position:relative;overflow:hidden;min-height:600px;}
-.feature-img-col img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;display:block;}
+.feature-img-col{position:relative;overflow:hidden;min-height:600px;background:#0a0a0a;}
+.feature-img-col img{width:100%;height:100%;object-fit:contain;transition:transform .8s ease;display:block;}
 .feature-img-col:hover img{transform:scale(1.03);}
 .feature-badge{
   position:absolute;bottom:32px;left:32px;
@@ -176,9 +171,58 @@ h1 .accent{color:#4da3ff;}
 .g-item:first-child{grid-row:span 2;}
 .g-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;}
 .g-item:hover img{transform:scale(1.05);}
-.g-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.6),transparent 50%);opacity:0;transition:opacity .35s;display:flex;align-items:flex-end;padding:20px 22px;}
+.g-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.7),transparent 55%);opacity:0;transition:opacity .35s;display:flex;align-items:flex-end;padding:24px 26px;}
 .g-item:hover .g-overlay{opacity:1;}
-.g-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,237,232,.7);}
+.g-label{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#fff;font-weight:500;display:block;}
+.g-sublabel{font-size:11px;color:rgba(255,255,255,.55);letter-spacing:.06em;margin-top:4px;display:block;}
+
+/* PORTFOLIO */
+.portfolio-outer{background:#0e0e0e;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
+.portfolio-inner{max-width:1320px;margin:0 auto;padding:80px 56px;}
+.portfolio-head{margin-bottom:56px;}
+.portfolio-head h2{font-family:'Syne',sans-serif;font-size:clamp(38px,4vw,54px);font-weight:700;letter-spacing:-.02em;line-height:1.05;margin-bottom:12px;}
+.portfolio-head p{font-size:15px;color:rgba(240,237,232,.35);}
+.portfolio-clients{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.portfolio-client{
+  display:flex;align-items:center;justify-content:center;
+  padding:52px 48px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);
+  transition:background .3s,border-color .3s;
+  position:relative;overflow:hidden;
+}
+.portfolio-client::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:#0057A8;transform:scaleX(0);transform-origin:left;
+  transition:transform .4s ease;
+}
+.portfolio-client:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);}
+.portfolio-client:hover::before{transform:scaleX(1);}
+.portfolio-client img{
+  height:48px;width:auto;max-width:200px;
+  object-fit:contain;
+  filter:brightness(0) invert(1);
+  opacity:.35;
+  transition:opacity .35s,filter .35s;
+}
+.portfolio-client:hover img{
+  filter:none;
+  opacity:1;
+}
+
+/* TESTIMONIAL */
+.testimonial-outer{background:#0e0e0e;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden;}
+.testimonial-inner{max-width:1320px;margin:0 auto;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;}
+.testimonial-left{padding-right:72px;border-right:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;justify-content:space-between;gap:48px;}
+.testimonial-right{padding-left:72px;display:flex;align-items:center;justify-content:center;}
+.testimonial-right img{width:100%;max-width:480px;height:auto;object-fit:contain;filter:drop-shadow(0 40px 80px rgba(0,0,0,.6));}
+.t-quote-mark{font-family:'Syne',sans-serif;font-size:80px;line-height:1;color:#0057A8;font-weight:800;margin-bottom:-16px;display:block;}
+.t-quote p{font-size:17px;line-height:1.9;color:rgba(240,237,232,.6);font-weight:300;font-style:italic;}
+.t-attribution{display:flex;align-items:center;gap:24px;padding-top:40px;border-top:1px solid rgba(255,255,255,.06);}
+.t-logo{height:36px;width:auto;object-fit:contain;filter:invert(1);opacity:.7;}
+.t-divider{width:1px;height:40px;background:rgba(255,255,255,.1);}
+.t-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#f0ede8;}
+.t-role{font-size:12px;color:rgba(240,237,232,.35);margin-top:3px;letter-spacing:.04em;}
 
 /* CTA */
 .cta-wrap{background:#0057A8;padding:100px 56px;position:relative;overflow:hidden;}
@@ -196,7 +240,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
 .footer-top{max-width:1320px;margin:0 auto;padding:72px 56px 56px;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:60px;border-bottom:1px solid rgba(255,255,255,.06);}
 .footer-brand{display:flex;flex-direction:column;gap:20px;}
 .footer-logo{display:inline-flex;align-items:center;width:fit-content;}
-.footer-logo img{height:70px;width:auto;}
+.footer-logo img{height:70px;width:auto;max-width:180px;object-fit:contain;}
 .footer-brand p{font-size:13px;line-height:1.75;color:rgba(240,237,232,.28);max-width:220px;}
 .footer-col h4{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,237,232,.22);margin-bottom:20px;font-weight:500;}
 .footer-col a,.footer-col p{display:block;font-size:13px;color:rgba(240,237,232,.35);margin-bottom:13px;line-height:1;transition:color .2s;}
@@ -211,8 +255,6 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-
-/* Reveal — starts visible, JS adds animation class */
 .reveal{opacity:1;transform:none;}
 .reveal.animate{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease;}
 .reveal.animate.in{opacity:1;transform:translateY(0);}
@@ -222,7 +264,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
   nav,nav.scrolled{padding-left:30px;padding-right:30px;}
   .s{padding:80px 30px;}
   .hero-content{padding:0 30px 60px;}
-  .hero-tag{top:22px;right:30px;}
+  .hero-tag{top:110px;right:30px;}
   .about-grid{grid-template-columns:1fr;gap:48px;}
   .about-label{position:static;}
   .services-head{grid-template-columns:1fr;}
@@ -231,6 +273,11 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
   .feature-img-col{min-height:380px;}
   .feature-text-col{padding:48px 30px;}
   .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:260px 200px;}
+  .portfolio-inner{padding:60px 30px;}
+  .portfolio-clients{grid-template-columns:1fr;}
+  .testimonial-inner{grid-template-columns:1fr;gap:0;}
+  .testimonial-left{padding-right:0;padding-bottom:48px;border-right:none;border-bottom:1px solid rgba(255,255,255,.07);}
+  .testimonial-right{padding-left:0;padding-top:48px;}
   .cta-wrap{padding:72px 30px;}
   .cta-inner{flex-direction:column;align-items:flex-start;gap:36px;}
   .footer-top{grid-template-columns:1fr 1fr;gap:40px;padding:56px 30px 40px;}
@@ -239,6 +286,8 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
 @media(max-width:640px){
   h1{font-size:42px;}
   .nav-links{display:none;}
+  .logo img{height:60px;}
+  .hero-tag{top:100px;right:20px;}
   .hero-content{flex-direction:column;align-items:flex-start;gap:32px;}
   .hero-right{max-width:100%;}
   .stats-row{grid-template-columns:1fr;}
@@ -252,9 +301,6 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
 </style>
 </head>
 <body>
-
-<div id="cur"></div>
-<div id="cur-trail"></div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -388,14 +434,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
 <div class="feature-outer">
   <div class="feature-grid" style="max-width:1320px;margin:0 auto;">
     <div class="feature-img-col reveal">
-      <img src="https://image2url.com/r2/default/images/1774129124360-064b22f5-1317-489f-b449-44c25dd6f61f.png" alt="Website design example">
-      <div class="feature-badge">
-        <div class="badge-dot"></div>
-        <div class="badge-txt">
-          <strong>CAA Registered</strong>
-          Certified Drone Operator
-        </div>
-      </div>
+      <img src="https://i.postimg.cc/tJjWY61J/Result-Surveying-Website-Launch-PNG-(1).png" alt="Result Surveying website">
     </div>
     <div class="feature-text-col reveal">
       <div class="label-tag"><div class="label-tag-dot"></div> Web Design</div>
@@ -415,10 +454,10 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
   </div>
 </div>
 
-<!-- GALLERY -->
+<!-- GALLERY — DRONE PHOTOGRAPHY -->
 <section class="s">
   <div class="gallery-head reveal">
-    <h2>Our <span class="dim">Gallery</span></h2>
+    <h2>Aerial <span class="dim">Photography</span></h2>
     <a href="#">
       View All Work
       <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
@@ -426,19 +465,79 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
   </div>
   <div class="gallery-grid">
     <div class="g-item reveal">
-      <img src="https://cdn.prod.website-files.com/67f845f932f268860becd300/67f845f932f268860becd389_Franks%20(5).jpg" alt="Aerial photography">
-      <div class="g-overlay"><span class="g-label">Aerial Photography</span></div>
+      <img src="https://cdn.prod.website-files.com/67f845f932f268860becd300/67f845f932f268860becd389_Franks%20(5).jpg" alt="Castle Hill, Huddersfield">
+      <div class="g-overlay">
+        <div>
+          <span class="g-label">Castle Hill</span>
+          <span class="g-sublabel">Huddersfield, West Yorkshire</span>
+        </div>
+      </div>
     </div>
     <div class="g-item reveal">
-      <img src="https://image2url.com/r2/default/images/1774129124360-064b22f5-1317-489f-b449-44c25dd6f61f.png" alt="Website design">
-      <div class="g-overlay"><span class="g-label">Website Design</span></div>
+      <img src="https://i.postimg.cc/C10W7vX7/DJI-0151-(2).jpg" alt="Fintra Beach, Killybegs, Donegal">
+      <div class="g-overlay">
+        <div>
+          <span class="g-label">Fintra Beach</span>
+          <span class="g-sublabel">Killybegs, Donegal</span>
+        </div>
+      </div>
     </div>
     <div class="g-item reveal">
-      <img src="https://cdn.prod.website-files.com/67f845f932f268860becd300/67f845f932f268860becd389_Franks%20(5).jpg" alt="3D Imagery">
-      <div class="g-overlay"><span class="g-label">3D Perspectives</span></div>
+      <img src="https://i.postimg.cc/hPY664NS/DJI-0196-FF.jpg" alt="Ardara, Donegal">
+      <div class="g-overlay">
+        <div>
+          <span class="g-label">Ardara</span>
+          <span class="g-sublabel">County Donegal, Ireland</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- PORTFOLIO — WEBSITES -->
+<div class="portfolio-outer">
+  <div class="portfolio-inner">
+    <div class="portfolio-head reveal">
+      <div class="label-tag"><div class="label-tag-dot"></div> Web Design</div>
+      <h2>Website <span class="dim">Portfolio</span></h2>
+      <p>A selection of brands we've built digital homes for.</p>
+    </div>
+    <div class="portfolio-clients reveal">
+      <a href="https://www.bielbyassociates.co.uk" target="_blank" rel="noopener" class="portfolio-client">
+        <img src="https://images.squarespace-cdn.com/content/v1/68e96700e97e214d978494dd/fcb69960-7cc0-4864-9e06-f41306644dfb/Final+Black+logo.bmp.png?format=1500w" alt="Bielby Associates">
+      </a>
+      <a href="https://www.resultsurveying.com" target="_blank" rel="noopener" class="portfolio-client">
+        <img src="https://images.squarespace-cdn.com/content/v1/691f70804af57b769fcaa963/eeb58a8d-3fad-47c0-96b1-d0ab02ebbe7a/result-logo+%281%29.png?format=1500w" alt="Result Surveying">
+      </a>
+      <a href="https://www.t1assetmanagement.co.uk" target="_blank" rel="noopener" class="portfolio-client">
+        <img src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/a4fbaec7-8c0d-427b-9f85-bc15ee43844e/Monochrome+on+Transparent.png?format=1500w" alt="T1 Asset Management">
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-outer">
+  <div class="testimonial-inner">
+    <div class="testimonial-left reveal">
+      <div class="t-quote">
+        <span class="t-quote-mark">"</span>
+        <p>I appointed Franks Media to create a new (long overdue) website and can honestly say that the service level and attention to detail in the design stage, copy, client reporting and general advisory capacity was over and above what we were expecting. Franks Media have surpassed our expectations and seamlessly managed the whole process from inception to the website going live. I would recommend Franks Media to anyone or any company looking for a new or refresh to their company website. I cannot say how easy Franks Media made the process feel, to the extent that we have retained Franks Media to update and modernise the website on an ongoing basis. Thanks for the great end result.</p>
+      </div>
+      <div class="t-attribution">
+        <img class="t-logo" src="https://cdn.prod.website-files.com/67f845f932f268860becd300/697cc4399053dae6211f4e95_Final%20Black%20logo%20PNG-p-2000.png" alt="Bielby Associates">
+        <div class="t-divider"></div>
+        <div>
+          <div class="t-name">James Bielby</div>
+          <div class="t-role">Director, Bielby Associates</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-right reveal">
+      <img src="https://i.postimg.cc/VkG63tmP/bbbbbbbb.png" alt="Bielby Associates website">
+    </div>
+  </div>
+</div>
 
 <!-- CTA -->
 <div class="cta-wrap">
@@ -447,12 +546,12 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
     <h2>Let's build something great together.</h2>
     <div class="cta-right">
       <p>Get in touch today — no obligation, just a conversation about your project.</p>
-      <a href="mailto:info@franks-media.co.uk" class="btn btn-white">
+      <a href="/cdn-cgi/l/email-protection#771e19111837110516191c045a1a12131e1659141859021c" class="btn btn-white">
         Contact the Studio
         <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
       </a>
-      <a href="mailto:info@franks-media.co.uk" class="btn-outline-white">
-        info@franks-media.co.uk
+      <a href="/cdn-cgi/l/email-protection#d2bbbcb4bd92b4a0b3bcb9a1ffbfb7b6bbb3fcb1bdfca7b9" class="btn-outline-white">
+        <span class="__cf_email__" data-cfemail="41282f272e012733202f2a326c2c242528206f222e6f342a">[email&#160;protected]</span>
         <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
       </a>
     </div>
@@ -483,7 +582,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
-      <a href="mailto:info@franks-media.co.uk" class="email">info@franks-media.co.uk</a>
+      <a href="/cdn-cgi/l/email-protection#6a03040c052a0c180b04011947070f0e030b440905441f01" class="email"><span class="__cf_email__" data-cfemail="0e676068614e687c6f60657d23636b6a676f206d61207b65">[email&#160;protected]</span></a>
       <p>Huddersfield,<br>West Yorkshire</p>
     </div>
   </div>
@@ -496,8 +595,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
   </div>
 </footer>
 
-<script>
-// Cursor
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const cur = document.getElementById('cur');
 const trail = document.getElementById('cur-trail');
 let tx=0,ty=0,rx=0,ry=0;
@@ -522,35 +620,9 @@ document.querySelectorAll('a,button,input').forEach(el => {
     trail.style.borderColor = 'rgba(255,255,255,.25)';
   });
 });
-
-// Nav scroll
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
-
-// Scroll reveal — elements start fully visible, JS opts them into animation
-// This ensures content is never hidden if observer/JS fails
 const revealEls = document.querySelectorAll('.reveal');
-
-if ('IntersectionObserver' in window) {
-  // Add animate class (makes them invisible initially for animation)
-  revealEls.forEach((el, i) => {
-    el.classList.add('animate');
-    el.style.transitionDelay = (i * 0.05) + 's';
-  });
-
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0, rootMargin: '0px 0px -30px 0px' });
-
-  revealEls.forEach(el => io.observe(el));
-}
-</script>
-</body>
-</html>
+if ('IntersectionObse
