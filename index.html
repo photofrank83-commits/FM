@@ -252,7 +252,53 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
 .footer-bottom a:hover{color:rgba(240,237,232,.45);}
 .footer-bottom-links{display:flex;gap:24px;}
 
-/* ANIMATIONS */
+/* MOBILE GALLERY SLIDER */
+@media(max-width:640px){
+  .gallery-grid{display:none;}
+  .gallery-slider{display:block;}
+}
+@media(min-width:641px){
+  .gallery-slider{display:none;}
+}
+.gallery-slider{position:relative;overflow:hidden;border-radius:4px;}
+.slider-track{display:flex;transition:transform .5s cubic-bezier(.25,.46,.45,.94);}
+.slide{flex:0 0 100%;position:relative;height:320px;}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;}
+.slide-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:28px 24px 24px;
+  background:linear-gradient(to top,rgba(10,10,10,.85),transparent);
+}
+.slide-caption .g-label{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#fff;font-weight:600;display:block;}
+.slide-caption .g-sublabel{font-size:12px;color:rgba(255,255,255,.55);margin-top:4px;display:block;}
+.slider-controls{display:flex;align-items:center;justify-content:space-between;margin-top:20px;}
+.slider-dots{display:flex;gap:8px;}
+.slider-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);border:none;cursor:pointer;padding:0;transition:background .25s,transform .25s;}
+.slider-dot.active{background:#0057A8;transform:scale(1.3);}
+.slider-arrows{display:flex;gap:8px;}
+.slider-btn{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  color:#f0ede8;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .25s,border-color .25s;
+}
+.slider-btn:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3);}
+.slider-btn svg{width:14px;height:14px;}
+
+/* PORTFOLIO MOBILE VISIT LABEL */
+.portfolio-visit{
+  display:none;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(240,237,232,.4);margin-top:14px;
+  align-items:center;gap:6px;
+}
+.portfolio-visit svg{width:11px;height:11px;}
+@media(max-width:640px){
+  .portfolio-clients{grid-template-columns:1fr;}
+  .portfolio-client{flex-direction:column;padding:36px 24px;}
+  .portfolio-visit{display:flex;}
+  .portfolio-client:active .portfolio-visit{color:#4da3ff;}
+}
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 .reveal{opacity:1;transform:none;}
@@ -293,8 +339,6 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
   .stats-row{grid-template-columns:1fr;}
   .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);}
   .stat:last-child{border-bottom:none;}
-  .gallery-grid{grid-template-columns:1fr;grid-template-rows:auto;}
-  .g-item,.g-item:first-child{height:260px;grid-row:span 1;}
   .footer-top{grid-template-columns:1fr;}
   .service-item{grid-template-columns:44px 1fr auto;gap:16px;}
 }
@@ -322,7 +366,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
   <div class="hero-bg"></div>
   <div class="hero-tag">
     <div class="hero-tag-dot"></div>
-    <span>Huddersfield, UK &amp; Ireland</span>
+    <span>Huddersfield, West Yorkshire</span>
   </div>
   <div class="hero-content">
     <div class="hero-left">
@@ -382,9 +426,9 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
       <p>Based in <strong>Huddersfield</strong>, Franks Media is a specialist creative studio combining cutting-edge aerial imaging technology with refined digital design. We give businesses a presence that commands attention — from the sky to the screen.</p>
       <p>Whether you need a high-performance website, cinematic drone footage, or a fully interactive 3D model of your property, we bring the expertise and artistry to make it real — on time and on budget.</p>
       <div class="stats-row">
-        <div class="stat"><span class="stat-n">200+</span><span class="stat-l">Projects</span></div>
-        <div class="stat"><span class="stat-n">UK &amp; IE</span><span class="stat-l">Coverage</span></div>
+        <div class="stat"><span class="stat-n">CAA</span><span class="stat-l">Registered</span></div>
         <div class="stat"><span class="stat-n">5★</span><span class="stat-l">Rated</span></div>
+        <div class="stat"><span class="stat-n">UK</span><span class="stat-l">Coverage</span></div>
       </div>
     </div>
   </div>
@@ -411,7 +455,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
       <span class="si-num">02</span>
       <div class="si-body">
         <h3>Virtual Tours &amp; Aerial Film</h3>
-        <p>Immersive 360° tours and cinematic drone footage powered by advanced CAA Registered drone technology across the UK and Ireland.</p>
+        <p>Immersive 360° tours and cinematic drone footage powered by advanced CAA Registered drone technology across the UK.</p>
       </div>
       <div class="si-arrow">
         <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
@@ -463,32 +507,58 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
       <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
     </a>
   </div>
+
+  <!-- Desktop grid -->
   <div class="gallery-grid">
     <div class="g-item reveal">
       <img src="https://cdn.prod.website-files.com/67f845f932f268860becd300/67f845f932f268860becd389_Franks%20(5).jpg" alt="Castle Hill, Huddersfield">
       <div class="g-overlay">
-        <div>
-          <span class="g-label">Castle Hill</span>
-          <span class="g-sublabel">Huddersfield, West Yorkshire</span>
-        </div>
+        <div><span class="g-label">Castle Hill</span><span class="g-sublabel">Huddersfield, West Yorkshire</span></div>
       </div>
     </div>
     <div class="g-item reveal">
       <img src="https://i.postimg.cc/C10W7vX7/DJI-0151-(2).jpg" alt="Fintra Beach, Killybegs, Donegal">
       <div class="g-overlay">
-        <div>
-          <span class="g-label">Fintra Beach</span>
-          <span class="g-sublabel">Killybegs, Donegal</span>
-        </div>
+        <div><span class="g-label">Fintra Beach</span><span class="g-sublabel">Killybegs, Donegal</span></div>
       </div>
     </div>
     <div class="g-item reveal">
       <img src="https://i.postimg.cc/hPY664NS/DJI-0196-FF.jpg" alt="Ardara, Donegal">
       <div class="g-overlay">
-        <div>
-          <span class="g-label">Ardara</span>
-          <span class="g-sublabel">County Donegal, Ireland</span>
-        </div>
+        <div><span class="g-label">Ardara</span><span class="g-sublabel">County Donegal, Ireland</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile slider -->
+  <div class="gallery-slider">
+    <div class="slider-track" id="sliderTrack">
+      <div class="slide">
+        <img src="https://cdn.prod.website-files.com/67f845f932f268860becd300/67f845f932f268860becd389_Franks%20(5).jpg" alt="Castle Hill">
+        <div class="slide-caption"><span class="g-label">Castle Hill</span><span class="g-sublabel">Huddersfield, West Yorkshire</span></div>
+      </div>
+      <div class="slide">
+        <img src="https://i.postimg.cc/C10W7vX7/DJI-0151-(2).jpg" alt="Fintra Beach">
+        <div class="slide-caption"><span class="g-label">Fintra Beach</span><span class="g-sublabel">Killybegs, Donegal</span></div>
+      </div>
+      <div class="slide">
+        <img src="https://i.postimg.cc/hPY664NS/DJI-0196-FF.jpg" alt="Ardara">
+        <div class="slide-caption"><span class="g-label">Ardara</span><span class="g-sublabel">County Donegal, Ireland</span></div>
+      </div>
+    </div>
+    <div class="slider-controls">
+      <div class="slider-dots">
+        <button class="slider-dot active" onclick="goToSlide(0)"></button>
+        <button class="slider-dot" onclick="goToSlide(1)"></button>
+        <button class="slider-dot" onclick="goToSlide(2)"></button>
+      </div>
+      <div class="slider-arrows">
+        <button class="slider-btn" onclick="prevSlide()">
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 7H1M7 13 1 7l6-6"/></svg>
+        </button>
+        <button class="slider-btn" onclick="nextSlide()">
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -505,12 +575,15 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
     <div class="portfolio-clients reveal">
       <a href="https://www.bielbyassociates.co.uk" target="_blank" rel="noopener" class="portfolio-client">
         <img src="https://images.squarespace-cdn.com/content/v1/68e96700e97e214d978494dd/fcb69960-7cc0-4864-9e06-f41306644dfb/Final+Black+logo.bmp.png?format=1500w" alt="Bielby Associates">
+        <span class="portfolio-visit">Visit Site <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span>
       </a>
       <a href="https://www.resultsurveying.com" target="_blank" rel="noopener" class="portfolio-client">
         <img src="https://images.squarespace-cdn.com/content/v1/691f70804af57b769fcaa963/eeb58a8d-3fad-47c0-96b1-d0ab02ebbe7a/result-logo+%281%29.png?format=1500w" alt="Result Surveying">
+        <span class="portfolio-visit">Visit Site <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span>
       </a>
       <a href="https://www.t1assetmanagement.co.uk" target="_blank" rel="noopener" class="portfolio-client">
         <img src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/a4fbaec7-8c0d-427b-9f85-bc15ee43844e/Monochrome+on+Transparent.png?format=1500w" alt="T1 Asset Management">
+        <span class="portfolio-visit">Visit Site <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span>
       </a>
     </div>
   </div>
@@ -565,7 +638,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
       <div class="footer-logo">
         <img src="https://i.postimg.cc/bYQZyD3g/Franks-Media-1-removebg-preview.png" alt="Franks Media">
       </div>
-      <p>Aerial photography, 3D imaging and bespoke websites for businesses across the UK &amp; Ireland.</p>
+      <p>Aerial photography, 3D imaging and bespoke websites for businesses across the UK.</p>
     </div>
     <div class="footer-col">
       <h4>Navigate</h4>
@@ -596,30 +669,28 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const cur = document.getElementById('cur');
-const trail = document.getElementById('cur-trail');
-let tx=0,ty=0,rx=0,ry=0;
-document.addEventListener('mousemove', e => {
-  tx = e.clientX; ty = e.clientY;
-  cur.style.left = tx+'px'; cur.style.top = ty+'px';
-});
-(function loop(){
-  rx += (tx-rx)*.1; ry += (ty-ry)*.1;
-  trail.style.left = rx+'px'; trail.style.top = ry+'px';
-  requestAnimationFrame(loop);
+// Gallery slider
+let currentSlide = 0;
+const totalSlides = 3;
+function goToSlide(n) {
+  currentSlide = n;
+  document.getElementById('sliderTrack').style.transform = `translateX(-${n * 100}%)`;
+  document.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === n));
+}
+function nextSlide() { goToSlide((currentSlide + 1) % totalSlides); }
+function prevSlide() { goToSlide((currentSlide - 1 + totalSlides) % totalSlides); }
+
+// Touch swipe support
+(function(){
+  const track = document.getElementById('sliderTrack');
+  if(!track) return;
+  let startX = 0;
+  track.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive:true});
+  track.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 40) diff > 0 ? nextSlide() : prevSlide();
+  }, {passive:true});
 })();
-document.querySelectorAll('a,button,input').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cur.style.transform = 'translate(-50%,-50%) scale(0)';
-    trail.style.width = '48px'; trail.style.height = '48px';
-    trail.style.borderColor = '#0057A8';
-  });
-  el.addEventListener('mouseleave', () => {
-    cur.style.transform = 'translate(-50%,-50%) scale(1)';
-    trail.style.width = '32px'; trail.style.height = '32px';
-    trail.style.borderColor = 'rgba(255,255,255,.25)';
-  });
-});
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
