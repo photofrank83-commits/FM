@@ -809,31 +809,58 @@ if(form){
   });
 }
 
-// Nav scroll backdrop
+// Gallery slider
 let currentSlide = 0;
 const totalSlides = 3;
 function goToSlide(n) {
   currentSlide = n;
-  document.getElementById('sliderTrack').style.transform = `translateX(-${n * 100}%)`;
-  document.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === n));
+  const track = document.getElementById('sliderTrack');
+  if(track) track.style.transform = 'translateX(-' + (n * 100) + '%)';
+  document.querySelectorAll('.slider-dot').forEach(function(d, i){ d.classList.toggle('active', i === n); });
 }
 function nextSlide() { goToSlide((currentSlide + 1) % totalSlides); }
 function prevSlide() { goToSlide((currentSlide - 1 + totalSlides) % totalSlides); }
 
-// Touch swipe support
+// Touch swipe
 (function(){
   const track = document.getElementById('sliderTrack');
   if(!track) return;
   let startX = 0;
-  track.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive:true});
-  track.addEventListener('touchend', e => {
+  track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', function(e){
     const diff = startX - e.changedTouches[0].clientX;
-    if(Math.abs(diff) > 40) diff > 0 ? nextSlide() : prevSlide();
+    if(Math.abs(diff) > 40){ diff > 0 ? nextSlide() : prevSlide(); }
   }, {passive:true});
 })();
+
+// Nav scroll backdrop
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
+window.addEventListener('scroll', function(){
+  if(window.scrollY > 60){
+    nav.style.background = 'rgba(10,10,10,0.92)';
+    nav.style.backdropFilter = 'blur(24px)';
+    nav.style.borderBottom = '1px solid rgba(255,255,255,0.07)';
+    nav.style.padding = '16px 56px';
+  } else {
+    nav.style.background = '';
+    nav.style.backdropFilter = '';
+    nav.style.borderBottom = '';
+    nav.style.padding = '';
+  }
+}, {passive:true});
+
+// Scroll reveal
 const revealEls = document.querySelectorAll('.reveal');
-if ('IntersectionObse
+if('IntersectionObserver' in window){
+  revealEls.forEach(function(el, i){
+    el.classList.add('animate');
+    el.style.transitionDelay = (i * 0.05) + 's';
+  });
+  const io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0, rootMargin:'0px 0px -30px 0px'});
+  revealEls.forEach(function(el){ io.observe(el); });
+}
+</script>
