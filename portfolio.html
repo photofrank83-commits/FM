@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Work | Portfolio | Franks Media — Web Design & Aerial Photography Yorkshire</title>
+<meta name="description" content="View the portfolio of Franks Media — bespoke websites, drone photography and aerial imagery created for businesses across Huddersfield and West Yorkshire. See our work for Bielby Associates, Result Surveying, T1 Asset Management and more.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.franks-media.co.uk/portfolio.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Our Work | Franks Media Portfolio">
+<meta property="og:description" content="Bespoke websites and aerial photography for Yorkshire businesses. View our portfolio.">
+<meta property="og:image" content="https://i.postimg.cc/VkG63tmP/bbbbbbbb.png">
+<meta property="og:site_name" content="Franks Media">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#0a0a0a;color:#f0ede8;font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:22px 56px;transition:padding .4s,background .4s;}
+nav.scrolled{padding:16px 56px;background:rgba(10,10,10,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,.07);}
+.logo{display:flex;align-items:center;}
+.logo img{height:90px;width:auto;max-width:200px;object-fit:contain;display:block;}
+.nav-right{display:flex;align-items:center;gap:44px;}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-size:13px;letter-spacing:.06em;color:rgba(240,237,232,.5);font-weight:400;transition:color .25s;}
+.nav-links a:hover,.nav-links a.active{color:#f0ede8;}
+.nav-btn{font-size:13px;letter-spacing:.06em;font-weight:500;padding:10px 22px;border:1px solid rgba(240,237,232,.2);border-radius:100px;color:#f0ede8;background:none;cursor:pointer;font-family:'Outfit',sans-serif;transition:background .25s,border-color .25s;}
+.nav-btn:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4);}
+
+/* PAGE HERO */
+.page-hero{padding:180px 56px 80px;max-width:1320px;margin:0 auto;}
+.page-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.page-eyebrow-line{width:32px;height:1px;background:rgba(240,237,232,.3);}
+.page-eyebrow span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,237,232,.4);}
+h1{font-family:'Syne',sans-serif;font-size:clamp(48px,7vw,88px);font-weight:700;line-height:1.0;letter-spacing:-.03em;color:#f0ede8;max-width:720px;}
+h1 .accent{color:#4da3ff;}
+.page-hero-sub{font-size:17px;color:rgba(240,237,232,.45);line-height:1.75;max-width:520px;margin-top:24px;}
+
+/* FILTER TABS */
+.filter-wrap{padding:0 56px 56px;max-width:1320px;margin:0 auto;}
+.filter-tabs{display:flex;gap:8px;flex-wrap:wrap;}
+.filter-btn{padding:9px 20px;border:1px solid rgba(255,255,255,.1);border-radius:100px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(240,237,232,.4);background:none;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .25s;}
+.filter-btn:hover{border-color:rgba(255,255,255,.3);color:rgba(240,237,232,.8);}
+.filter-btn.active{background:#0057A8;border-color:#0057A8;color:#fff;}
+
+/* LABEL TAG */
+.label-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid rgba(255,255,255,.1);border-radius:100px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,237,232,.4);margin-bottom:24px;}
+.label-tag-dot{width:5px;height:5px;border-radius:50%;background:#0057A8;}
+.dim{color:rgba(240,237,232,.22);}
+
+/* SECTIONS */
+.s{padding:0 56px 100px;max-width:1320px;margin:0 auto;}
+.section-header{margin-bottom:48px;}
+.section-header h2{font-family:'Syne',sans-serif;font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.05;margin-bottom:10px;}
+.section-header p{font-size:15px;color:rgba(240,237,232,.38);max-width:480px;line-height:1.65;}
+
+/* WEBSITE GRID */
+.web-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.web-card{position:relative;border-radius:8px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;transition:border-color .3s,transform .3s;}
+.web-card:hover{border-color:rgba(255,255,255,.15);transform:translateY(-4px);}
+.web-card-img{position:relative;overflow:hidden;aspect-ratio:16/10;}
+.web-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+.web-card:hover .web-card-img img{transform:scale(1.04);}
+.web-card-body{padding:24px 28px 28px;}
+.web-card-tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#0057A8;font-weight:600;margin-bottom:10px;display:block;}
+.web-card-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#f0ede8;letter-spacing:-.01em;margin-bottom:8px;}
+.web-card-desc{font-size:13px;color:rgba(240,237,232,.4);line-height:1.65;margin-bottom:20px;}
+.web-card-link{display:inline-flex;align-items:center;gap:7px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,237,232,.4);border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:2px;transition:color .25s,border-color .25s;}
+.web-card-link:hover{color:#f0ede8;border-color:rgba(255,255,255,.4);}
+.web-card-link svg{width:11px;height:11px;transition:transform .25s;}
+.web-card-link:hover svg{transform:translateX(3px);}
+
+/* AERIAL GALLERY */
+.aerial-masonry{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:380px 280px;gap:12px;}
+.aerial-item{overflow:hidden;border-radius:6px;position:relative;}
+.aerial-item:first-child{grid-row:span 2;}
+.aerial-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s ease;}
+.aerial-item:hover img{transform:scale(1.05);}
+.aerial-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.8),transparent 50%);opacity:0;transition:opacity .35s;display:flex;align-items:flex-end;padding:24px 26px;}
+.aerial-item:hover .aerial-overlay{opacity:1;}
+.aerial-label{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#fff;font-weight:600;display:block;}
+.aerial-sublabel{font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;display:block;}
+
+/* CLIENT LOGOS */
+.logos-outer{background:#0e0e0e;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
+.logos-inner{max-width:1320px;margin:0 auto;padding:72px 56px;}
+.logos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px;}
+.logo-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:52px 40px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;transition:background .3s,border-color .3s;}
+.logo-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:#0057A8;transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
+.logo-card:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);}
+.logo-card:hover::before{transform:scaleX(1);}
+.logo-card img{height:44px;width:auto;max-width:180px;object-fit:contain;filter:brightness(0) invert(1);opacity:.3;transition:opacity .35s,filter .35s;}
+.logo-card:hover img{filter:none;opacity:1;}
+.logo-card-name{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,237,232,.2);transition:color .25s;}
+.logo-card:hover .logo-card-name{color:rgba(240,237,232,.5);}
+.logo-card-link{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,87,168,.6);display:flex;align-items:center;gap:5px;transition:color .25s;}
+.logo-card:hover .logo-card-link{color:#4da3ff;}
+.logo-card-link svg{width:10px;height:10px;}
+
+/* TESTIMONIAL */
+.testimonial-outer{background:#0e0e0e;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
+.testimonial-inner{max-width:1320px;margin:0 auto;padding:100px 56px;display:grid;grid-template-columns:320px 1fr;gap:80px;align-items:center;}
+.t-logo-img{width:180px;height:auto;object-fit:contain;filter:invert(1);opacity:.6;margin-bottom:16px;}
+.t-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:600;color:#f0ede8;}
+.t-role{font-size:13px;color:rgba(240,237,232,.35);margin-top:3px;}
+.t-quote-mark{font-family:'Syne',sans-serif;font-size:72px;line-height:1;color:#0057A8;font-weight:800;margin-bottom:-12px;display:block;}
+.t-quote p{font-size:18px;line-height:1.85;color:rgba(240,237,232,.6);font-weight:300;font-style:italic;}
+
+/* CTA */
+.cta-wrap{background:#0057A8;padding:100px 56px;position:relative;overflow:hidden;}
+.cta-bg-txt{position:absolute;font-family:'Syne',sans-serif;font-size:220px;font-weight:800;color:rgba(255,255,255,.05);line-height:1;letter-spacing:-.04em;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;user-select:none;}
+.cta-inner{position:relative;z-index:1;max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:60px;}
+.cta-inner h2{font-family:'Syne',sans-serif;font-size:clamp(32px,4.5vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.0;color:#fff;max-width:580px;}
+.cta-right{flex-shrink:0;display:flex;flex-direction:column;gap:16px;align-items:flex-start;}
+.cta-right p{font-size:15px;color:rgba(255,255,255,.6);line-height:1.6;max-width:260px;}
+.btn{padding:14px 24px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;letter-spacing:.05em;display:inline-flex;align-items:center;gap:9px;transition:all .25s;cursor:pointer;border:none;}
+.btn-white{background:#fff;color:#0057A8;}
+.btn-white:hover{background:#f0f0f0;transform:translateY(-1px);}
+.btn svg{width:13px;height:13px;transition:transform .25s;}
+.btn:hover svg{transform:translateX(3px);}
+.btn-outline-white{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:2px;transition:color .25s,border-color .25s;font-family:'Outfit',sans-serif;}
+.btn-outline-white:hover{color:#fff;border-color:rgba(255,255,255,.8);}
+.btn-outline-white svg{width:11px;height:11px;}
+
+/* FOOTER */
+footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
+.footer-top{max-width:1320px;margin:0 auto;padding:64px 56px 48px;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:60px;border-bottom:1px solid rgba(255,255,255,.06);}
+.footer-brand{display:flex;flex-direction:column;gap:20px;}
+.footer-logo img{height:60px;width:auto;max-width:160px;object-fit:contain;}
+.footer-brand p{font-size:13px;line-height:1.75;color:rgba(240,237,232,.28);max-width:200px;}
+.footer-col h4{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,237,232,.22);margin-bottom:18px;font-weight:500;}
+.footer-col a,.footer-col p{display:block;font-size:13px;color:rgba(240,237,232,.35);margin-bottom:12px;line-height:1;transition:color .2s;}
+.footer-col a:hover{color:rgba(240,237,232,.75);}
+.footer-col .email{color:#4da3ff;border-bottom:1px solid rgba(77,163,255,.25);padding-bottom:1px;}
+.footer-bottom{max-width:1320px;margin:0 auto;padding:22px 56px;display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p,.footer-bottom a{font-size:12px;color:rgba(240,237,232,.18);}
+.footer-bottom-links{display:flex;gap:24px;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .35s ease;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal{background:#141414;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:52px 48px;width:100%;max-width:540px;position:relative;transform:translateY(24px);transition:transform .35s ease;}
+.modal-overlay.open .modal{transform:translateY(0);}
+.modal-close{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(240,237,232,.5);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:background .2s,color .2s;}
+.modal-close:hover{background:rgba(255,255,255,.12);color:#f0ede8;}
+.modal h3{font-family:'Syne',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;color:#f0ede8;}
+.modal-sub{font-size:14px;color:rgba(240,237,232,.4);margin-bottom:36px;line-height:1.5;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-group{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.form-group label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,237,232,.35);}
+.form-group input,.form-group textarea,.form-group select{padding:13px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#f0ede8;font-family:'Outfit',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border-color .25s,background .25s;width:100%;}
+.form-group textarea{resize:none;height:110px;}
+.form-group select option{background:#1a1a1a;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:rgba(0,87,168,.8);background:rgba(0,87,168,.06);}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(240,237,232,.2);}
+.modal-submit{width:100%;margin-top:8px;justify-content:center;background:#0057A8;color:#fff;}
+.modal-submit:hover{background:#0066cc;}
+.form-success{display:none;text-align:center;padding:32px 0;}
+.form-success strong{color:#f0ede8;display:block;font-family:'Syne',sans-serif;font-size:22px;margin-bottom:10px;}
+.form-success p{font-size:15px;color:rgba(240,237,232,.5);line-height:1.6;}
+@media(max-width:540px){.modal{padding:36px 24px;}.form-row{grid-template-columns:1fr;}}
+
+/* REVEAL */
+.reveal{opacity:1;transform:none;}
+.reveal.animate{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease;}
+.reveal.animate.in{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  nav,nav.scrolled{padding-left:30px;padding-right:30px;}
+  .page-hero{padding:160px 30px 60px;}
+  .filter-wrap{padding:0 30px 48px;}
+  .s{padding:0 30px 80px;}
+  .web-grid{grid-template-columns:1fr 1fr;}
+  .aerial-masonry{grid-template-columns:1fr 1fr;grid-template-rows:260px 200px;}
+  .logos-inner{padding:56px 30px;}
+  .logos-grid{grid-template-columns:1fr 1fr;}
+  .testimonial-inner{grid-template-columns:1fr;gap:40px;padding:72px 30px;}
+  .cta-wrap{padding:72px 30px;}
+  .cta-inner{flex-direction:column;align-items:flex-start;gap:36px;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px;padding:48px 30px 36px;}
+  .footer-bottom{padding:20px 30px;}
+}
+@media(max-width:640px){
+  h1{font-size:42px;}
+  .nav-links{display:none;}
+  .logo img{height:60px;}
+  .web-grid{grid-template-columns:1fr;}
+  .aerial-masonry{grid-template-columns:1fr;grid-template-rows:auto;}
+  .aerial-item,.aerial-item:first-child{height:260px;grid-row:span 1;}
+  .logos-grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">
+    <a href="index.html">
+      <img src="https://i.postimg.cc/bYQZyD3g/Franks-Media-1-removebg-preview.png" alt="Franks Media">
+    </a>
+  </div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="portfolio.html" class="active">Our Work</a></li>
+    </ul>
+    <button onclick="openModal()" class="nav-btn">Get in Touch</button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-eyebrow">
+    <div class="page-eyebrow-line"></div>
+    <span>Franks Media — Portfolio</span>
+  </div>
+  <h1>Our <span class="accent">Work.</span></h1>
+  <p class="page-hero-sub">Websites built to perform and aerial imagery that makes an impression — a selection of projects we're proud of.</p>
+</div>
+
+<!-- FILTER TABS -->
+<div class="filter-wrap">
+  <div class="filter-tabs">
+    <button class="filter-btn active" onclick="filterSection('all', this)">All Work</button>
+    <button class="filter-btn" onclick="filterSection('websites', this)">Websites</button>
+    <button class="filter-btn" onclick="filterSection('aerial', this)">Aerial Photography</button>
+  </div>
+</div>
+
+<!-- WEBSITES -->
+<section class="s" id="websites">
+  <div class="section-header reveal">
+    <div class="label-tag"><div class="label-tag-dot"></div> Web Design</div>
+    <h2>Websites <span class="dim">we've built</span></h2>
+    <p>Bespoke sites designed from scratch for businesses across Huddersfield and West Yorkshire.</p>
+  </div>
+
+  <div class="web-grid">
+
+    <div class="web-card reveal">
+      <div class="web-card-img">
+        <img src="https://i.postimg.cc/VkG63tmP/bbbbbbbb.png" alt="Bielby Associates website">
+      </div>
+      <div class="web-card-body">
+        <span class="web-card-tag">Property &amp; Surveying</span>
+        <div class="web-card-title">Bielby Associates</div>
+        <p class="web-card-desc">A clean, professional website for chartered surveying firm Bielby Associates — designed to reflect their expertise and generate quality client enquiries.</p>
+        <a href="https://www.bielbyassociates.co.uk" target="_blank" rel="noopener" class="web-card-link">
+          Visit Site
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="web-card reveal">
+      <div class="web-card-img">
+        <img src="https://i.postimg.cc/tJjWY61J/Result-Surveying-Website-Launch-PNG-(1).png" alt="Result Surveying website">
+      </div>
+      <div class="web-card-body">
+        <span class="web-card-tag">Surveying</span>
+        <div class="web-card-title">Result Surveying</div>
+        <p class="web-card-desc">A bold, modern website for Result Surveying — built to stand out in a competitive market and convert visitors into enquiries from the first click.</p>
+        <a href="https://www.resultsurveying.com" target="_blank" rel="noopener" class="web-card-link">
+          Visit Site
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="web-card reveal">
+      <div class="web-card-img">
+        <img src="https://i.postimg.cc/QxxGTyZX/T1-Asset-Management-Website-Launch-(1).png" alt="T1 Asset Management website">
+      </div>
+      <div class="web-card-body">
+        <span class="web-card-tag">Asset Management</span>
+        <div class="web-card-title">T1 Asset Management</div>
+        <p class="web-card-desc">A refined, authoritative online presence for T1 Asset Management — conveying trust and professionalism to prospective clients from the first visit.</p>
+        <a href="https://www.t1assetmanagement.co.uk" target="_blank" rel="noopener" class="web-card-link">
+          Visit Site
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CLIENT LOGOS -->
+<div class="logos-outer">
+  <div class="logos-inner">
+    <div class="section-header reveal">
+      <div class="label-tag"><div class="label-tag-dot"></div> Clients</div>
+      <h2>Brands <span class="dim">we've worked with</span></h2>
+    </div>
+    <div class="logos-grid">
+      <a href="https://www.bielbyassociates.co.uk" target="_blank" rel="noopener" class="logo-card reveal">
+        <img src="https://images.squarespace-cdn.com/content/v1/68e96700e97e214d978494dd/fcb69960-7cc0-4864-9e06-f41306644dfb/Final+Black+logo.bmp.png?format=1500w" alt="Bielby Associates">
+        <span class="logo-card-name">Bielby Associates</span>
+        <span class="logo-card-link">Visit Site <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span>
+      </a>
+      <a href="https://www.resultsurveying.com" target="_blank" rel="noopener" class="logo-card reveal">
+        <img src="https://images.squarespace-cdn.com/content/v1/691f70804af57b769fcaa963/eeb58a8d-3fad-47c0-96b1-d0ab02ebbe7a/result-logo+%281%29.png?format=1500w" alt="Result Surveying">
+        <span class="logo-card-name">Result Surveying</span>
+        <span class="logo-card-link">Visit Site <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span>
+      </a>
+      <a href="https://www.t1assetmanagement.co.uk" target="_blank" rel="noopener" class="logo-card reveal">
+        <img src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/a4fbaec7-8c0d-427b-9f85-bc15ee43844e/Monochrome+on+Transparent.png?format=1500w" alt="T1 Asset Management">
+        <span class="logo-card-name">T1 Asset Management</span>
+        <span class="logo-card-link">Visit Site <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- AERIAL PHOTOGRAPHY -->
+<section class="s" id="aerial" style="padding-top:80px;">
+  <div class="section-header reveal">
+    <div class="label-tag"><div class="label-tag-dot"></div> Aerial Photography</div>
+    <h2>Drone <span class="dim">imagery</span></h2>
+    <p>CAA Registered aerial photography and cinematography for businesses and organisations across the UK.</p>
+  </div>
+
+  <div class="aerial-masonry">
+    <div class="aerial-item reveal">
+      <img src="https://cdn.prod.website-files.com/67f845f932f268860becd300/67f845f932f268860becd389_Franks%20(5).jpg" alt="Castle Hill, Huddersfield aerial photography">
+      <div class="aerial-overlay">
+        <div>
+          <span class="aerial-label">Castle Hill</span>
+          <span class="aerial-sublabel">Huddersfield, West Yorkshire</span>
+        </div>
+      </div>
+    </div>
+    <div class="aerial-item reveal">
+      <img src="https://i.postimg.cc/C10W7vX7/DJI-0151-(2).jpg" alt="Fintra Beach aerial drone photography">
+      <div class="aerial-overlay">
+        <div>
+          <span class="aerial-label">Fintra Beach</span>
+          <span class="aerial-sublabel">Killybegs, Donegal</span>
+        </div>
+      </div>
+    </div>
+    <div class="aerial-item reveal">
+      <img src="https://i.postimg.cc/hPY664NS/DJI-0196-FF.jpg" alt="Ardara Donegal aerial photography">
+      <div class="aerial-overlay">
+        <div>
+          <span class="aerial-label">Ardara</span>
+          <span class="aerial-sublabel">County Donegal, Ireland</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-outer">
+  <div class="testimonial-inner">
+    <div class="reveal">
+      <img class="t-logo-img" src="https://cdn.prod.website-files.com/67f845f932f268860becd300/697cc4399053dae6211f4e95_Final%20Black%20logo%20PNG-p-2000.png" alt="Bielby Associates">
+      <div class="t-name">James Bielby</div>
+      <div class="t-role">Director, Bielby Associates</div>
+    </div>
+    <div class="reveal">
+      <span class="t-quote-mark">"</span>
+      <div class="t-quote">
+        <p>I appointed Franks Media to create a new (long overdue) website and can honestly say that the service level and attention to detail in the design stage, copy, client reporting and general advisory capacity was over and above what we were expecting. Franks Media have surpassed our expectations and seamlessly managed the whole process from inception to the website going live. I would recommend Franks Media to anyone or any company looking for a new or refresh to their company website.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <div class="cta-bg-txt">FM</div>
+  <div class="cta-inner">
+    <h2>Like what you see? Let's work together.</h2>
+    <div class="cta-right">
+      <p>Get in touch for a free, no-obligation conversation about your project.</p>
+      <button onclick="openModal()" class="btn btn-white">
+        Start a Project
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+      </button>
+      <a href="mailto:info@franks-media.co.uk" class="btn-outline-white">
+        info@franks-media.co.uk
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="https://i.postimg.cc/bYQZyD3g/Franks-Media-1-removebg-preview.png" alt="Franks Media">
+      </div>
+      <p>Website design and aerial photography for businesses across Huddersfield and West Yorkshire.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="web-design.html">Website Design</a>
+      <a href="index.html#services">Drone Photography</a>
+      <a href="index.html#services">Virtual Tours</a>
+      <a href="index.html#services">3D Perspectives</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Our Work</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:info@franks-media.co.uk" class="email">info@franks-media.co.uk</a>
+      <p>Huddersfield,<br>West Yorkshire</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Franks Media. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    <h3>Start a Conversation</h3>
+    <p class="modal-sub">Tell us about your project — we'll get back to you within one business day.</p>
+    <form id="contactForm" action="https://formspree.io/f/xnjgybry" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" name="first_name" placeholder="James" required>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" name="last_name" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="james@company.com" required>
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" name="phone" placeholder="+44 7700 000000">
+      </div>
+      <div class="form-group">
+        <label>What are you interested in?</label>
+        <select name="service">
+          <option value="" disabled selected>Select a service</option>
+          <option>Website Design</option>
+          <option>Aerial Photography</option>
+          <option>Drone Cinematography</option>
+          <option>Virtual Tours</option>
+          <option>3D Perspectives</option>
+          <option>Multiple Services</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell us more</label>
+        <textarea name="message" placeholder="Give us a brief overview of your project..."></textarea>
+      </div>
+      <input type="hidden" name="source" value="Portfolio Page">
+      <button type="submit" class="btn modal-submit">
+        Send Enquiry
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+      </button>
+    </form>
+    <div class="form-success" id="formSuccess">
+      <strong>Message Sent!</strong>
+      <p>Thanks for getting in touch. We'll get back to you within one business day.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Modal
+function openModal(){document.getElementById('contactModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';}
+function handleOverlayClick(e){if(e.target===document.getElementById('contactModal'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// Form
+const form=document.getElementById('contactForm');
+if(form){
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    const btn=form.querySelector('button[type=submit]');
+    const orig=btn.innerHTML;
+    btn.textContent='Sending...';btn.disabled=true;
+    try{
+      const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+      if(res.ok){form.style.display='none';document.getElementById('formSuccess').style.display='block';}
+      else{btn.innerHTML=orig;btn.disabled=false;}
+    }catch{btn.innerHTML=orig;btn.disabled=false;}
+  });
+}
+
+// Nav scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){
+  if(window.scrollY>60){
+    nav.style.background='rgba(10,10,10,0.92)';
+    nav.style.backdropFilter='blur(24px)';
+    nav.style.webkitBackdropFilter='blur(24px)';
+    nav.style.borderBottom='1px solid rgba(255,255,255,0.07)';
+    nav.style.padding='16px 56px';
+  }else{
+    nav.style.background='';nav.style.backdropFilter='';
+    nav.style.webkitBackdropFilter='';
+    nav.style.borderBottom='';nav.style.padding='';
+  }
+},{passive:true});
+
+// Filter tabs
+function filterSection(type, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const websites=document.getElementById('websites');
+  const aerial=document.getElementById('aerial');
+  const logos=document.querySelector('.logos-outer');
+  if(type==='all'){
+    [websites,aerial,logos].forEach(el=>{if(el)el.style.display='';});
+  } else if(type==='websites'){
+    websites.style.display='';logos.style.display='';
+    aerial.style.display='none';
+  } else if(type==='aerial'){
+    aerial.style.display='';
+    websites.style.display='none';logos.style.display='none';
+  }
+}
+
+// Reveal
+const revealEls=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  revealEls.forEach(function(el,i){el.classList.add('animate');el.style.transitionDelay=(i*0.05)+'s';});
+  const io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:0,rootMargin:'0px 0px -30px 0px'});
+  revealEls.forEach(function(el){io.observe(el);});
+}
+</script>
+</body>
+</html>
