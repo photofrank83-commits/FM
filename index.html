@@ -252,6 +252,7 @@ h1 .accent{color:#4da3ff;}
 .services-head h2{font-family:'Syne',sans-serif;font-size:clamp(38px,4vw,54px);font-weight:700;letter-spacing:-.02em;line-height:1.05;}
 .services-head p{font-size:15px;line-height:1.75;color:rgba(240,237,232,.4);max-width:340px;justify-self:end;align-self:end;}
 .service-list{display:flex;flex-direction:column;}
+a.service-item{color:inherit;}
 .service-item{
   display:grid;grid-template-columns:60px 1fr auto;align-items:center;gap:32px;
   padding:36px 0;border-bottom:1px solid rgba(255,255,255,.07);
@@ -621,7 +622,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
     <p>Three core disciplines, one focused studio — built to make your brand impossible to ignore.</p>
   </div>
   <div class="service-list">
-    <div class="service-item reveal">
+    <a href="web-design.html" class="service-item reveal">
       <span class="si-num">01</span>
       <div class="si-body">
         <h3>Website Design</h3>
@@ -630,7 +631,7 @@ footer{background:#080808;border-top:1px solid rgba(255,255,255,.06);}
       <div class="si-arrow">
         <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
       </div>
-    </div>
+    </a>
     <div class="service-item reveal">
       <span class="si-num">02</span>
       <div class="si-body">
@@ -1067,11 +1068,13 @@ window.addEventListener('scroll', function(){
   if(window.scrollY > 60){
     nav.style.background = 'rgba(10,10,10,0.92)';
     nav.style.backdropFilter = 'blur(24px)';
+    nav.style.webkitBackdropFilter = 'blur(24px)';
     nav.style.borderBottom = '1px solid rgba(255,255,255,0.07)';
     nav.style.padding = '16px 56px';
   } else {
     nav.style.background = '';
     nav.style.backdropFilter = '';
+    nav.style.webkitBackdropFilter = '';
     nav.style.borderBottom = '';
     nav.style.padding = '';
   }
@@ -1080,4 +1083,17 @@ window.addEventListener('scroll', function(){
 // Scroll reveal
 const revealEls = document.querySelectorAll('.reveal');
 if('IntersectionObserver' in window){
-  revealEls.forEach(function(el
+  revealEls.forEach(function(el, i){
+    el.classList.add('animate');
+    el.style.transitionDelay = (i * 0.05) + 's';
+  });
+  const io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0, rootMargin:'0px 0px -30px 0px'});
+  revealEls.forEach(function(el){ io.observe(el); });
+}
+</script>
+</body>
+</html>
